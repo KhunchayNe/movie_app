@@ -33,8 +33,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  void initState() {
+    Provider.of<MovieProvider>(context, listen: false).loadMovie(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final movies = Provider.of<MovieProvider>(context).loadMovie();
+    final movieData = Provider.of<MovieProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Movies'),
@@ -42,12 +48,15 @@ class _HomeState extends State<Home> {
       body: Center(
         child: ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: movies.length,
+            itemCount: movieData.movieList.length,
             itemBuilder: (context, index) {
+              final movie = movieData.movieList[index];
               return ListTile(
-                title: Text(movies[index]),
+                title: Text(movie.title!),
+                subtitle: Text('sub'),
+                trailing: Icon(Icons.movie_creation_outlined),
                 leading: CircleAvatar(
-                  child: Text(movies[index][0]),
+                  child: Text(movie.title![0]),
                 ),
               );
               // return Card(
