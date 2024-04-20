@@ -28,7 +28,10 @@ class _MovieDetailState extends State<MovieDetail> {
       body: Container(
           child: Column(
         children: [
-          MovieCard(movie: movie),
+          MovieCard(
+            movie: movie,
+            idDetails: true,
+          ),
           Text(
             movie.title!,
             style: Theme.of(context).textTheme.headlineSmall,
