@@ -25,11 +25,11 @@ class MovieProvider extends ChangeNotifier {
           .loadString('assets/data/film.json');
 
       final movies = MovieParser.parse(jsonString);
+      movies.sort((a, b) => (a.title ?? '').compareTo(b.title ?? ''));
       _movieList = movies;
-
       notifyListeners();
     } catch (e) {
-      print('Error loading movies : $e');
+      // print('Error loading movies : $e');
     }
   }
 

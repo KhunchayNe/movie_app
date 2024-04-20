@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/providers/movieProvider.dart';
 import 'package:provider/provider.dart';
 
+import 'components/movie_card.dart';
+
 void main() {
   runApp(ChangeNotifierProvider(
       create: (context) => MovieProvider(), child: const MyApp()));
@@ -51,14 +53,15 @@ class _HomeState extends State<Home> {
             itemCount: movieData.movieList.length,
             itemBuilder: (context, index) {
               final movie = movieData.movieList[index];
-              return ListTile(
-                title: Text(movie.title!),
-                subtitle: Text('sub'),
-                trailing: Icon(Icons.movie_creation_outlined),
-                leading: CircleAvatar(
-                  child: Text(movie.title![0]),
-                ),
-              );
+              return MovieCard(movie: movie);
+              // return ListTile(
+              //   title: Text(movie.title!),
+              //   subtitle: Text('sub'),
+              //   // trailing: Icon(Icons.movie_creation_outlined),
+              //   leading: CircleAvatar(
+              //     child: Text(movie.title![0]),
+              //   ),
+              // );
               // return Card(
               //   child: Container(
               //       padding: EdgeInsets.all(8),
